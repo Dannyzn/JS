@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 闭包
+     // 函数作为返回值
+     // 函数作为参数传递
+    function F1() {
+        var a = 100
+
+        // 返回一个函数（函数作为返回值）
+        return function(){
+            console.log(a)  // a是一个自由变量，该怎么办呢？找它的父级作用域
+        }
+    }
+    // f1得到一个函数
+    var f1 = F1()
+    var a = 200   // 全局作用域下的a
+    f1()   // 
+
+    // 函数作为参数传递
+
+    function F1(){
+        var a = 100
+        return function () {
+            console.log(a)    // 自由变量，父级作用域寻找
+        }
+
+    }
+
+    var f1 = F1()
+    function F2(fn){
+        var a = 200
+        fn()   //  他执行的作用域到底在哪里
+    }
+    F2(f1)   // 100
+
+
+    // 1.说一下对变量提升的理解
+    // 变量定义
+    // 函数声明 （注意和函数表达式的区别）
+
+    // 2. 说明this几种不同的使用changjing
+    // 作为构造函数执行
+    // 作为对象属性执行
+    // 作为普通函数执行
+    // call apply bind
+
+    // 创建10个标签点击的时候弹出来对应的序号
+
+    // 这是一个错误的写法
+    var i,a
+    for (i = 0; i < 10; i++) {
+        a = document.createElement('a')
+        a.innerHTML =  i + '<br>'
+        a.addEventListener('click',function(e){
+            e.preventDefault();
+            alert(i)  // 9
+        })
+        document.body.appendChild(a)
+    }
+
+    // 这是正确的写法
+    var i 
+    for( i = 0; i < 10; i++){
+        (function (i) {
+            var a = document.createElement('a')
+            a.innerHTML = i + "<br>"
+            a.addEventListener("click", function(e){
+                e.preventDefault()
+                alert(i)
+            })
+            document.body.appendChild(a)
+        })(i)
+    }
+
+    // 如何理解作用域
+    // 自由变量
+    // 作用域链，即自由变量的查找
+    // 闭包的两个场景
+    
+
+    //  实际开发中闭包的作用
+    //  闭包实际应用中主要是用于封装变量，收敛权限
+    function isFirstLoad() {
+        var _list = []
+        return function (id) {
+            if (_list.indexOf(id) >= 0) {
+                return false
+            } else {
+                _list.push(id)
+                return true
+            }
+        }
+    }
+    
+
+    // 使用  判断的原值是否存在
+    var firstLoad = isFirstLoad()
+    firstLoad(10)  // true
+    firstLoad(10)  // false
+    firstLoad(20)  // true
+    </script>
+</body>
+</html>

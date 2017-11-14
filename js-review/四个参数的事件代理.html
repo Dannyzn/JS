@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">
+        <a id="link1" href="http://baidu.com">imooc.com</a>
+        <a id="link2" href="http://baidu.com">imooc.com</a>
+        <a id="link3" href="http://baidu.com">imooc.com</a>
+        <a id="link4" href="http://baidu.com">imooc.com</a>
+        <p id="p1">激活</p>
+        <p id="p2">取消</p>
+    </div>
+    <div id="div2">
+        <p id="p3">取消</p>
+        <p id="p4">取消</p>
+    </div>
+
+    <script type="text/javascript">
+        function bindEvent(elem, type, selector, fn){ // selector就是代理的选择器
+            // 当参数是三个并且是fn不存在时,selector将会把它自己位置交给fn
+            if( fn = null ){
+                fn =selector
+                selector = null
+            }
+            elem.addEventListener(type,function(e){
+                var target
+                if( selector ) {
+                   // 代理
+                    target = e.target
+                    if(target.matches(selector)){ // matches函数此时就是判断DOM选择器是不是和原来的是匹配的
+                        fn.call(target, e)
+                    }
+                } else {
+                    // 不是代理
+                    fn(e)
+                }
+            })
+            
+        }
+        // 代理
+        var div1 = document.getElementById('div1')
+        bindEvent(div1,'click','a',function(e){
+            e.preventDefault()
+            console.log(this.innerHTML)
+        })
+
+        //不代理
+        var p1 = document.getElementById('p1')
+        bindEvent(div1, 'click', function(e){
+            console.log(p1.innerText)
+        })
+
+
+        bindEvent(div1,'click','a',function(){})
+
+        bindEvent(div1, 'click', function(){})
+
+        // var div1 = document.getElementById('div1')
+        // bindEvent(div1, 'click', function(e){
+        //     e.preventDefault()
+        //     var target = e.target
+        //     if (target.nodeName === 'A'){
+        //         Console.log('clicked')
+        //     }
+        // })
+        
+        
+    </script>
+</body>
+</html>

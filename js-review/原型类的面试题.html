@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        1. 如何让判断一个变量是数据类型
+        2. 写一个原型链继承的例子
+        3. 描述 new 一个对象的过程
+        4. zepto(或者其他框架中) 源码中如何使用原型链
+        */
+        // 1. 如何让判断一个变量是数据类型
+        var arr = []
+        arr instanceof Array  // true
+        typeof  arr  //object ,typeof是无法判断是否是数组的
+
+        // 2. 写一个原型链继承的例子
+        // 动物
+        function Animals(){
+            this.eat = function(){
+                console.log( 'animal eat' )
+            }
+        }
+        // 狗
+        function Dog() {
+            this.bark = function(){
+                console.log( 'dog bark' )
+            }
+        }
+        Dog.prototype = new Animal()
+
+        // 哈士奇
+        var hashiqi = new Dog()
+        
+        // 3.描述new 一个对象的过程
+        /*
+        1. 创建一个新对象
+        2. this指向这个新对象
+        3. 执行代码，即对this赋值
+        4. 返回this
+        */
+
+        function Foo(name,age){
+            this.name = name;
+            this.age = age;
+            this.class = 'class-1'
+            // return this // 默认有这一行
+        }
+
+        var f = new Foo('zhangsan',20)
+        // var f1 = new Foo('list',22)  // 创建多个对象
+
+        // 4. zepto(或者其他框架中) 源码中如何使用原型链
+        // 阅读源码是提高技能的方法
+        
+    </script>
+</body>
+</html>

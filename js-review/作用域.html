@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>作用域</title>
+</head>
+<body>
+    <script>
+       /*
+       1.说一下对变量提升的理解
+       2.说明this几种不同的使用场景
+       3.创建10个<a>标签,点击的时候弹出来对应的序号
+       4.如何理解作用域
+       5.实际开发中的闭包问题
+       
+       */
+
+       // 知识点
+       /*
+       1.执行上下文
+       2.this
+       3.作用域
+       4.作用域链
+       5.闭包
+
+       */
+       // 执行上下文
+       /*
+       1. 范围： 一段<script> 或者一个函数
+       2. 全局： 变量定义、函数声明
+       3. 函数： 变量定义、函数声明、this、arguments （函数执行之前）
+          函数声明  、  函数表达式
+       */
+       console.log(a)  // undefined
+       var a = 100
+
+       fn('zhangsan')  // zhangsan 20
+       function fn(name){
+           age = 20
+           console.log(name, age)
+           var age
+       }
+
+       // this
+       // this 要在执行时才能确认值，定义时无法确认
+
+       var a = {
+           name:'A',
+           fn: function(){
+               console.log(this.name)
+           }
+       }
+       a.fn()  // this === a
+       a.fn.call({name: 'B'})  // this === {name: 'B'}
+       var fn1 = a.fn;
+       fn1()   // this === window
+
+       /*
+       1.作为构造函数执行
+       2.作为对象属性执行
+       3.作为普通函数执行
+       4.call apply bind
+       */
+
+       function fn1(name, age){
+           alert(name)
+           console.log(this)
+       }
+       fn1.call({x:100},'zhangsan',20)
+
+       var fn2 = function(name, age){
+           alert(name)
+           console.log(this)
+       }.bind({y:200})  // bind的函数必须是表达式
+       fn2('zhangsan',20)
+
+
+       // 作用域
+       /*
+       1. js没有块级作用域
+       2. 只有函数和全局作用域
+
+       */
+
+       // 无块级作用域
+       if(true) {
+           var name = 'zhangsan'
+       }
+       console.log(name)
+
+       // 函数和函数作用域
+       var a = 100
+       function fn(){
+           var a = 200
+           console.log('fn', a)
+       }
+       console.log('global',a)
+       fn()
+
+       // 作用域链
+       var a = 100
+       function fn() {
+           var b = 200
+
+           // 当前作用域没有定义的变量，即“自由变量”
+           console.log(a)
+
+           console.log(b)
+       }
+
+       fn()
+
+       //  f2函数的父级作用域是f1,f1的父级作用域是全局   
+       var c = 100
+       function f1() {
+           var d = 200 
+           function f2() {
+               var e = 300
+               console.log(c)   // a是自由变量
+               console.log(d)   // d是自由变量
+               console.log(e)    
+           }
+           f2()
+       }
+       f1()
+
+       
+
+
+    </script>
+</body>
+</html>

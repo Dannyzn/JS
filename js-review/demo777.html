@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var i 
+        for( i = 0; i < 10; i++){
+            (function (i){ // 调用父级的值
+                // 函数作用域
+                var a = document.createElement('a')
+                a.innerHTML = i + '<br>'
+                a.addEventListener('click',function(e) {
+                    e.preventDefault()
+                    alert(i)   // 自由变量。要去父级作用域去找
+                })
+                document.body.appendChild(a)
+            })(i)    // 自由变量的值
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function isFirstLoad() {
+            var _List = []
+            return function (id) {
+                //是否有重复的一项
+                if(_List.indexOf(id) >= 0){
+                    return false
+                } else {
+                    _List.push(id)
+                    return true
+                }
+            }
+        }
+
+        var firstLoad = isFirstLoad()
+        var a = firstLoad(10)   // true
+        var b = firstLoad(10)   // false
+        console.log(a,b)
+        // 你在 isFirstLoad 函数外面，根本不可能修改掉 _list 的值
+    </script>
+</body>
+</html>

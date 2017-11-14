@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        1. 手写一个 ajax , 不依赖第三方库
+
+        2. 跨域的几种实现方式
+
+        
+        */
+
+        /*
+        核心知识点：
+
+        XMLHttpRequest  
+        状态码的说明
+        跨域
+        */
+
+        // XMLHttpRequest()
+        var xhr = new XMLHttpRequeat()
+
+        xhr.open("GET","/api", false)
+
+        xhr.onreadystatechange = function () { // 状态变化时函数的触发
+            // 这里的函数异步执行
+            if(xhr.readystate == 4){
+
+                if(xhr.status === 200){  // 状态码
+
+                    alert(xhr.responseText) // 服务端返回的内容
+                }
+            }
+        }
+
+        xhr.send(null)
+
+        // IE兼容性问题
+        /*
+        IE低版本使用ActiveXObject,和W3C标准不一样
+        IE低版本使用量以非常少，网站都早已不支持
+        建议对IE的低版本的兼容性： 了解即可 无需深究
+
+        */ 
+     
+         // 状态码说明 
+         xhr.readystate == 4
+         //0 -  (未初始化) 还没开始调用send()方法
+         //1 -  (载入) 以调用send() 方法，正在发送请求
+         //2 -  (载入完成) send()方法执行完成，已经接收到全部响应内容
+         //3 -  (交互) 正在解析响应内容
+         //4 -  响应内容解析完成， 可以在客户端调用了
+
+         xhr.state == 200
+
+         // 2xx - 表示成功处理请求  ru200
+
+         // 3xx - 需要重定向，浏览器直接跳转
+
+         // 4XX - 客户端请求错误 ， 如 404
+
+         // 5XX - 服务器端错误
+
+
+    </script>
+</body>
+</html>

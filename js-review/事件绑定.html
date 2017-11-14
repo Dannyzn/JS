@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件绑定</title>
+</head>
+<body>
+    <script>
+        /*
+        1. 编写一个通过的事件监听函数
+        2. 描述事件冒泡
+        3. 对于一个无限下拉加载图片的页面，如何给每个图片绑定事件
+
+        */
+
+        /*
+        知识点
+        1. 通用事件绑定
+        2. 事件冒泡
+        3. 代理
+
+        */
+
+        // 通用事件绑定
+        var btn = document.getElementById('btn1')
+        btn.addEventListener('click',function(event){
+            console.log('clicked')
+        })
+
+        function bindEvent(elem, type, fn){
+            elem.addEventListener(type, fn)
+        }
+
+        var a = document.getElementById('link1')
+        bindEvent(a, 'click', function(e) {
+            e.preventDefault();    // 阻止默认行为
+            alert('clicked')
+            
+        })
+
+
+        // 低版本兼容 IE 兼容性
+        // IE低版本使用 attachEvent 绑定事件，和w3c标准不一样
+
+        
+
+
+    </script>
+</body>
+</html>

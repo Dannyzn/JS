@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>跨域</title>
+</head>
+<body>
+    <script>
+        // 什么是跨域？
+        // JSONP
+        // 服务器端设置 http header
+
+        // 什么是跨域？
+        /*
+        1. 浏览器有同源策略， 不允许ajax访问其他域接口
+
+        eg: 你的网站 http://www.yourname.com/page1.html
+            当你去访问慕课网的接口的时候
+            http://m.imooc.com/course/ajaxcourserecom?cid=459
+            肯定的不允许的
+        
+        跨域条件： 协议  http 80 /  https 443
+                  域名
+                  端口
+                  有一个不同就算是跨域
+                  
+
+        但是三个标签允许跨域加载资源
+        <img src=xxx>   如果人家做了防盗链的处理
+        
+        <link href=xxx>
+
+        <script src=xxx>
+
+        */
+
+
+        // 三个标签的适用场景
+        // <img>用于打点统计，统计网站可能是其他域
+
+        // <LINK> <script> 可以使用CDN,CDN的也是其他域 bootCDN 为前端框架提供加速服务 （内容分发网络）
+
+        // <script> 可以用于JSONP,
+
+        /*
+        跨域注意事项
+
+        所有的跨域请求都必须经过信息提供方允许
+
+        如果未经允许即可获取， 那是浏览器同源策略出现漏洞
+
+        
+        */
+    </script>
+</body>
+</html>

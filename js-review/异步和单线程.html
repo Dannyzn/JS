@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>异步和单线程</title>
+</head>
+<body>
+    <script>
+        /*
+        同步和异步的区别是什么？分别举一个同步和异步例子
+        一个关于 setTimeout 的笔试题
+        前端使用异步的场景有哪些
+
+        */
+
+        /*
+        知识点
+        1. 什么是异步
+        2. 前端使用异步的场景
+        3. 异步和单线程
+        */
+
+        // 什么是异步？
+        console.log(100)
+        setTimeout(function () {
+            console.log(200)
+        }, 1000)
+        console.log(300)
+
+        // 100 -> 200 -> 300  打印顺序的不同  
+        // 100 -> 300 -> 200
+
+        // 同步和异步的最大区别就是会不会有程序的阻塞发生
+
+        // 对比同步
+        console.log(100)
+        alert(200)  // 点击确认之后执行
+        console.log(300)
+         
+
+        // 何时需要异步
+        // 1.在可能发生等待的情况
+        // 2.等待过程中不能像alert 一样阻塞程序运行
+        // 因此，所有的“等待的情况”都需要异步
+
+        // 前端使用异步的场景
+        // 定时任务 ： setTimeout , setInterval
+
+        // 网络请求： ajax请求， 动态<img>加载
+
+        // 事件绑定(根据用户的实际情况来触发事件)
+
+        // ajax请求代码   等待请求才去执行相应的代码
+        console.log('start')
+        $.get('./data1.json',function(data1){
+            console.log(data1)
+        })
+        console.log('end')
+        
+        // img 加载实例   除了等待的事件外，该干嘛干嘛
+        console.log('start')
+        var img = document.createElement('img')
+        img.onload = function(){
+            console.log('loaded')
+        }
+
+        img.src = './xxx.png'
+        console.log('end')
+
+        // 事件绑定实例
+        console.log('start')
+        document.getElementById('btn1').addEventListener('click', function(){
+            alert('clicked')
+        })
+        console.log('end')
+
+        // 忘记了可以复习4-4
+
+        //同步和异步的区别是什么
+        // 同步会阻塞代码执行，而异步不会
+        // alert是同步， setTimeout是异步
+
+        
+    </script>
+</body>
+</html>

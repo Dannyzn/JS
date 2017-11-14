@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">
+        <p id="p1">激活</p>
+        <p id="p2">取消</p>
+        <p id="p3">取消</p>
+        <p id="p4">取消</p>
+    </div>
+    <div id="div2">
+        <p id="p5">取消</p>
+        <p id="p6">取消</p>
+    </div>
+
+    <script>
+        var p1 = documemt.getElementById('p1')
+        var body = document.body
+
+        function bindEvent(elem, type, fn){
+            elem.addEventListener(type, fn)
+        }
+
+        bindEvent(p1, 'click', function(e){
+            e.stopPropatation()
+            alert('激活')
+        })
+        bindEvent(body, 'click', function(e){
+            alert('取消')
+        })
+
+        // 点击激活 -> 取消（因为取消冒泡，此操作满足需求）
+        // p2 -> div1 -> body 取消满足需求
+
+        // 事件冒泡的实际应用场景  代理
+        
+    </script>
+    <div id="div1">
+        <a href="#">a1</a>
+        <a href="#">a2</a>
+        <a href="#">a3</a>
+        <a href="#">a4</a>
+        <!-- 随时会新增更多的 a 标签 -->
+    </div>
+
+    <script>
+        // var div1 = document.getElementById('div1')
+        // div1.addEventListener('click',function(e){
+        //     var target = e.target  // target告诉你是哪里触发的
+        //     if( target.nodeName === 'A') {
+        //         alert(target.innerHTML)
+        //     }
+        // })
+
+        // 完善通用绑定事件的函数
+        function bindEvent(elem, type, selector, fn){
+            if (fn == null){
+                fn = selector
+                selector = null
+            }
+
+            elem.addEventListener(type, function (e) {
+                var target
+                if(selector) {
+                    target = e.target
+                    if (target.matches(selector)) {
+                        fn.call(target, e)
+                    }
+                } else {
+                    fn(e)
+                }
+            })
+        }
+
+        // 使用代理
+        var div1 = document.getElementById('div1')
+        bindEvent(div1, 'click', 'a', function(e){
+            console.log(this.innerHTML)
+        })
+
+        // 不使用代理
+        var a = document.getElementById('a1')
+        bindEvent(div1, 'click', function(e){
+            console.log(a.innerHTML)
+        })
+
+        // 代理的好处
+        // 代码简洁
+        // 减少浏览器内存占用
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function test(xx){
+            this.x = xx;
+            return this;
+        }
+
+        var x = test(5);
+        var y = test(6);
+        // console.log();
+        console.log(x.x);   // undefined
+        console.log(y.x);   // 6
+
+
+        // var a = document.write;
+        // a('hello')
+        var b = console.log;
+        b('hello world');
+
+        var a = document.write;
+        a.call(document,"adc");
+
+        // write方法调用时,判断了callee, 这个参数必须是文档流，否则就是参数错误
+        // 
+        
+
+     </script>
+</body>
+</html>

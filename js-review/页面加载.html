@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*
+    1. 从输入 url 到 html 的详细过程
+    2. window.onload 和 DOMContentLoaded 的区别
+
+    
+    */
+
+    /*
+    知识点：
+    1. 加载资源的形式
+    2. 加载一个资源的过程
+    3. 浏览器渲染页面的过程
+    
+    */ 
+
+    // 加载资源的形式
+    // 输入url （或跳转页面） 加载html(页面)
+    // http://coding.m.imooc.com
+    // 加载 html 中的静态资源
+    // <script src="/static/js/jquery.js">
+    
+
+    /*
+    加载一个资源的过程  （从输入 url 到 html 的详细过程）
+    1. 浏览器根据 DNS 服务器 得到的域名的 ip 地址
+    2. 向这个 IP 的机器发送 http 请求
+    3. 服务器收到， 处理并返回 http 请求
+    4. 浏览器得到返回内容
+
+  
+    */
+
+    /*
+    浏览器渲染页面的过程  （执行顺序过程）
+
+    根据 HTML 结构生成 DOM Tree
+
+    根据 CSS 生成 CSSOM 
+
+    将 DOM 和 CSSOM 整合形成 RenderTree
+
+    根据 RenderTree 开始渲染和展示
+
+    遇到<script> 时， 会执行 并 阻塞 渲染  (因为JS会改变DOM的结构和内容)
+    */
+
+    //  为什么把 JS 放在 body 最下面
+    //  性能优化的问题
+    //  
+
+    /*
+    window.onload  和 DOMContentLoaded
+
+    window.addEventListener('load', function() {
+        // 页面的全部资源加载完才会执行， 包括图片， 视频等；
+    })
+
+    window.addEventListener('DOMContentLoaded', function(){
+        // DOM 渲染完即可执行， 此时图片、视频还可能没有加载完
+
+    })
+    */
+
+
+    </script>
+</body>
+</html>

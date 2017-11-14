@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS-WEB-API</title>
+</head>
+<body>
+    <script>
+        // Js内置的全局函数和对象有哪些？
+        //  Object Array Boolean String Math JSON
+        //  window document  所有未被定义的全局变量navigator
+
+        // 常说的Js
+        //  JS基础知识（ECMA262）
+        //  Js-web-API (w3c标准)
+
+        // DOM caozuo 
+        // Document Object Model 文档对象模型
+
+        // DOM 是哪种基本的数据结构
+        // DOM 操作常用的API有哪些？
+        // DOM 节点的 attribute 和 property 有何区别？
+
+        // 知识点
+        // DOM的本质
+        // DOM的节点操作
+        // DOM结构操作
+
+        // DOM的本质
+        //  xml  扩展的描述性的语言
+        //  DOM树  
+        //  html 是xml 的一种特殊类型
+
+        // DOM可以理解为：
+        // 浏览器把拿到的html代码，结构化一个浏览器能识别并且JS可操作的一个模型而已
+
+        // DOM节点操作
+        // 获取DOM节点
+        // property
+        // Attribute
+
+        var div1 = document.getElementById('div1');  // 元素
+        var divList = document.getElementsByTagName('div');  // 集合
+        console.log(divList.length);
+        console.log(divList[0]);
+
+        var containerList = document.getElementsByClassName('.container'); // 集合
+        var pList = document.querySelector('p')   // 集合
+
+        // property
+        var pList = document.querySelector('p')
+        var p = pList[0]
+        console.log(p.style.width)  // 获取样式
+        p.style.width = '100px'     // 修改样式
+        console.log(p.className)    // 获取 class
+        p.className = 'p1'          // 修改 class
+
+        // 获取 nodeName  和 nodeType
+        console.log(p.nodeName)
+
+        console.log(p.nodeType)
+
+        // 什么是property?  是js对象中的
+        var obj = {x:100,y:200};
+        console.log(obj.x);  // x叫做obj的 property
+        //100
+
+        var p = document.getElementsByTagName('p')[0]
+        console.log(p.nodeName)  // nodeName叫做p的 property
+        // p(字符串)
+
+        // 什么是 Attribute?   是HTML中真正的文档中的
+        var pList = document.querySelector('p')
+        var p = pList[0]
+
+        p.getAttribute('data-name')
+        p.setAttribute('data-name','imooc')
+        p.getAttribute('style')
+        p.setAttribute('style','font-size:30px;')
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

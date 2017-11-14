@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS基础知识点</title>
+</head>
+<body>
+    <script>
+      /*
+      题目
+      1. 获取2017-06-10格式的日期
+      2. 获取随机数，要求是长度一致的字符串格式
+      3. 写一个能遍历对象和数组的通过forEach函数
+
+      
+      */
+
+      /*
+      日期
+      Math
+      数组API
+      对象API
+      */
+
+      // 日期
+      Date.now()   // 获取当前时间毫秒数
+      var dt = new Date()
+      dt.getTime()  // 获取毫秒数
+      dt.getFullYear()  // 年
+      dt.getMonth()  // 月 (0-11)
+      dt.getDate()   // 日 (0-31)
+      dt.getHours()  // 小时(0 - 23)
+      dt.getMinutes()  // 分钟(0 - 59)
+      dt.getSeconds()  // 秒(0 - 59)  
+
+      // Math
+      // 获取随机数Math.random()
+
+      // forEach 遍历所有元素
+      // every 判断所有元素是否都符合条件
+      // some 判断是否有至少一个元素符合条件
+      // sort 排序
+      // map对元素重新组装，生成新数组
+
+      var arr = [1,2,3]
+      arr.forEach(function(item, index){
+          // 遍历数组的所有元素
+          console.log(index, item)
+      })
+
+      // every
+      var arr = [1,2,3]
+      var result = arr.every(function(item, index){
+          // 用来判断所有的数组元素，都满足一个条件
+          if( item < 4){
+              return true
+          }
+      })
+      console.log(result)
+
+      // some 
+      var arr = [1,2,3]
+      var result = arr.some(function(item, index){
+          // 用来判断所有的数组元素，只要有一个满足条件即可
+          if(item < 2) {
+              return true
+          }
+      })
+      console.log(result)  
+
+      // sort
+      var arr = [1,4,2,3,5]
+      var arr2 = arr.sort(function(a,b){
+          // 从小到大排序
+          return a - b
+
+          // 从大到小排序
+         // return b - a
+      }) 
+      console.log(arr2)
+
+      // map
+      var arr = [1,2,3,4]
+      var arr2 = arr.map(function(item, index) {
+          // 将元素重新组装，并返回
+          return '<b>' + item + '</b>'
+      })
+      console.log(arr2)
+
+      // filter
+      var arr = [1,2,3]
+      var arr2 = arr.filter(function(item,index){
+          // 通过某一个条件过滤数组
+          if(item >= 2){
+              return true
+          }
+      }) 
+      console.log(arr2)
+
+      // 对象的API
+      var obj = {
+          x: 100,
+          y: 200,
+          z: 300
+      }
+      var key
+      for(key in obj){
+          // 注意这里的 hasOwnProperty,再讲原型链的时候就讲过了
+          if(obj.hasOwnProperty(key)){
+              console.log(key, obj[key])
+          }
+      }
+
+      var a = Math.ceil().valueOf;
+      var b = Math.random()*10;
+      console.log(a,Math.floor(b))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

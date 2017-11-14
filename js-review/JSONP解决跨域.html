@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        JSONP 实现的原理
+
+        加载 http://coding.m.imooc.com/classindex.html
+
+        不一定服务器端真正的有一个 clasindex.html 文件
+
+        服务器可以根据请求，动态生成一个文件， 返回
+
+        同理于  <script src="http://coding.m.imooc.com/api.js">
+
+        */
+
+        /*
+        eg:假如你的网站要跨域访问慕课网的一个接口
+
+        慕课网给你一个地址： http://coding.m.imooc.com/api.js
+
+        返回内容格式如  callback({X:100,Y:200}) (可动态生成)
+
+
+        */
+
+        window.callback = function (data) {
+            // 这是我们跨域得到的信息
+            console.log(data)  // 慕课网返回的是什么数据，我们就会从这个callback函数中得到什么数据
+        }
+    </script>
+    <script src="http://coding.m.imooc.com/api.js"></script>  
+    <!-- 最重要的script标签不受跨域的限制 -->
+    <!-- 以上将返回callback({X:100,Y:200}) (可动态生成) -->
+</body>
+</html>

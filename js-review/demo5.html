@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // a = undefined
+        // var fn1 = undefined
+        fn()
+       function fn(){
+
+       }
+
+       var fn1 = function(){
+
+       }
+       console.log(a);  // undefined
+       var a = 100
+
+       fn('zhangsan')
+       function fn(name){
+           console.log(name)
+       }
+
+       fn2('zhangsan')
+       function fn2(name) {
+
+           // 函数 在函数执行开始 this 和 arguments 就已经确定了
+           console.log(this);
+           console.log(arguments);
+
+           age = 20
+           console.log(name, age)
+           var age
+
+           bar(100)
+
+           function bar(num) {
+               console.log(num)
+           }
+       }
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模块化</title>
+</head>
+<body>
+    <script>
+    /*
+    1. 不使用模块化
+    2. 使用模块化
+    3. AMD
+    4. CommonJS 
+    */
+
+
+    // 不使用 js
+
+    /*
+    util.js 最基础的函数库   getFormatDate 函数
+
+    a-util.js  aGetFormatDate 函数  使用 getFormatDate
+
+    a.js       aGetFormatDate
+    */
+
+    // util.js
+    function getFormatDate(date, type) {
+        // type === 1 返回 2017-06-15
+        // type === 2 返回 2017年6月15日 格式
+        // ...
+    }
+
+    // a-util.js
+    function aGetFormatDate(date) {
+        // 要求返回 2017年6月15日 格式
+        return getFormatDate(date, 2)
+    }
+
+    // a.js
+    var dt = new Date()
+    console.log(aGetFormatDate(dt))
+
+    // 使用 
+    
+
+    </script>
+    <script src="util.js"></script>
+    <script src="a-util.js"></script>
+    <script src="a.js"></script>
+    <!-- 这个顺序放错会报错的，一层一层的函数依赖，但是不清楚上层是谁 -->
+    <!-- 1. 这些代码中的函数必须是全局变量，才能暴露给使用方。 全局变量污染 -->
+    <!-- 2. a.js 知道要引用 a-util.js, 但是他知道还要依赖与 util.js 吗？ -->
+
+    <script>
+        //  全局变量污染就是 如果函数之前定义的一个全局变量被后来所声明或者引用函数中的全局变量所替换或者改变
+
+        // 使用模块化
+        // util.js  暴露出的函数
+    export {
+        getFormatDate: function(date, type) {
+        // type === 1 返回 2017-06-15
+        // type === 2 返回 2017年6月15日 格式
+        // ...
+        }
+    }
+
+    // a-util.js  用到什么引用什么
+    var getFormatDate = require('util.js');
+    export {
+        aGetFormatDate : function(date) {
+            // 要求返回 2017年6月15日 格式
+            return getFormatDate(date, 2)
+        }
+    }
+
+    // a.js
+    var aGetFormatDate = require("a-util.js")
+    var dt = new Date()
+    console.log(aGetFormatDate(dt))
+
+    // 使用 直接<script src="a.js"> 其他的根据依赖关系自动引用
+    // 那两个函数， 没必要要做成全局变量， 不会带来污染和覆盖
+
+
+    // AMD  异步模块定义规范
+    //  require.js  
+    //  全局定义 define 函数
+    //  全局 require 函数
+    //  依赖 JS 会自动，异步加载
+    </script>
+</body>
+</html>

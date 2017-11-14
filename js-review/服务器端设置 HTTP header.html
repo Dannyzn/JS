@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*
+    服务器端设置 http header
+    另外一个解决跨域的简单方法，需要服务器端来做
+    但是作为交互方，我们必须知道这个方法
+
+    是将来解决跨域问题的一个趋势
+
+    */
+
+    // 注意不同的后端语言写法可能不一样
+
+    // 第二个参数填写允许跨域的域名称，不建议直接写 "*"
+    response.setHeader("Access-Control-Allow-Origin", "http://a.com, http://b.com")
+    response.setHeader("Access-Control-Allow-Header", "X-Requested-With")
+    response.setHeader("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS")
+
+    // 接收到的跨域的 cookie
+    response.setHeader("Access-Control-Allow-Credentials","true")
+    </script>
+</body>
+</html>

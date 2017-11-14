@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>性能优化</title>
+</head>
+<body>
+    <script>
+       /*
+       原则
+
+       1. 多使用 内存、缓存或者其他方法
+
+       2. 减少 CPU 计算， 减少网络请求
+
+       从哪里入手
+
+       加载页面和静态资源
+
+       页面渲染
+
+       加载资源的优化
+
+       1. 静态资源的压缩合并    (资源合并 借助webpack CommonJS)
+
+       2. 静态资源缓存         （ 通过 连接名称 控制缓存
+                                <script src="abc_1.js"></sc>
+                                只有内容改变的时候，连接名称才会改变
+                                <script src="abc_2.js"></sc>
+       ）
+
+       3. 使用 CDN 让 资源 加载 更快   (cdn.bootcss.com)
+
+       4. 使用 SSR 后端渲染， 数据直接输出到 HTML 中
+          （VUE ,REACT   无需AJAX的数据请求）
+
+          其实 jsp, php， asp 都是后端渲染
+
+
+       渲染的优化
+
+       1. CSS 放前面， JS 放后面
+
+       2. 懒加载 （图片懒加载、下拉加载更多）
+
+       <img id="img1" src="preview.png" data-realsrc="abc.png">
+       <script type="text/javascript">
+           var img1 = document.getElementById('img1')
+           img1.src= img.getAttribute('data-realsrc')
+       </scr>
+
+       3. 减少 DOM 查询， 对 DOM 查询做缓存
+
+       // 未缓存 DOM 查询
+       var i 
+       for ( i = 0; i < document.getElementsByTagName("p").length; i++){
+           // todo
+       }
+
+       // 缓存了 DOM 查询
+       var pList = document.getElementsByTagName('p') //不用每次去执行DOM查询，一次DOM查询将所需的数据用一个变量P存起来
+       var i 
+       for ( i = 0; i < pList.length; i++){
+           // todo      
+       }
+
+       4. 减少 DOM 操作， 多个操作 尽量 合并 到 一起 执行
+
+       // 合并 DOM 插入
+       var listNode = document.getElementById('list')
+
+       // 要插入 10 个 li 标签
+       var frag = document.createDocumentFragment();
+       var x, li;
+       for(x = 0; x < 10; x++) {
+           li = document.createElement("li");
+           li.innerHTML = "List item" + x;
+           frag.appendChild(li);
+           // 用 frag 暂存 最后一次性添加
+           // createElement 重复操作
+       } 
+
+       listNode.appendChild(frag);
+
+       5. 事件节流 ()  // 就是当我们在快速操作的时候，不需要一次次的执行事件，而是等事件停下来以后最后执行一次
+       
+       var textarea = document.getElementById('text')
+       var timeoutId
+       textarea.addEventListener('keyup', function(){
+           if (timeoutId) {
+               clearTimeout(timeoutId)
+           }
+
+           timeoutId = setIimeout(function () {
+               // 触发 change 事件
+           }， 100)
+       })
+
+
+       6. 尽早在执行操作 (如 DOMContentLoaded)
+
+       window.addEventListener("load", function() {
+           // 页面的全部资源加载完，才会执行，包括图片，视频等
+       })
+
+       document.addEventListener("DOMContentLoaded", function () {
+           // DOM 渲染完即可执行， 此时图片、视频还可能没有加载完
+       })
+       
+       */
+    </script>
+</body>
+</html>

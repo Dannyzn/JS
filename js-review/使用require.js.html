@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用 require.js</title>
+</head>
+<body>
+    <script src="/require.min.js" date-main="./main.js"></script>
+    <script>
+
+        // AMD  异步模块定义规范
+        //  require.js  
+        //  全局定义 define 函数  (只有defined的东西，才能被 require)
+        //  全局 require 函数（require.js函数引入后会全局定义一个require函数）
+        //  依赖 JS 会自动，异步加载
+        
+        // a. js  2
+        define(['./a-util.js'], function(aUtil) {
+            return {
+                printDate: function(date) {
+                    console.log(aUtil.aGetFormatDate(date))
+                }
+            }
+        })
+
+
+        // main.js   最表层 1
+        require(['./a.js'], function (a) {  // a 得到的是 上面函数a. js的返回值
+            var date = new Date()
+            a.printDate(date)
+        })
+
+
+        // a-util.js  3
+        define(['./util.js'], function (util) {
+            return {
+                aGetFormatDate : function (date) {
+                    return util.aGetFormatDate(date, 2)
+                }
+            }
+        })
+
+        // util.js   4 最底层
+        define(function () {
+            return {
+                GetFormatDate : function (date, type) {
+                    if ( type === 1 ) {
+                        return '2017-06-15'
+                    }
+                    if ( type === 2 ) {
+                        return '2017年6月15日'
+                    }
+                }
+            }
+        })
+
+        // 底层 define 一个东西 提供返回值 供 上层接受  
+    </script>
+</body>
+</html>

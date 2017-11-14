@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Elem(id){
+            this.Elem = document.getElementById(id)
+        }
+
+        Elem.prototype.html = function(val){
+            var elem = this.elem;
+            if(val){
+                elem.innerHTML = val
+                return this  // 链式操作
+            } else {
+                return elem.innerHTML;
+            }
+        }
+
+        Elem.prototype.on = function(type,fn){
+            var elem = this.elem;
+            elem.addEventListener(type,fn)
+            return this
+        }
+
+        var div1 = new Elem();
+        // console.log(div1.html())
+        // div1.html('<p>hello imooc</p>');
+        // div1.on('click',function(){
+        //     alert('clicked');
+        // })
+        // 链式操作
+        div1.html('<p>hello imooc</p>').on('click',function(){
+            alert('clicked');
+        }).html('<p>javascript</p>')
+    </script>
+</body>
+</html>

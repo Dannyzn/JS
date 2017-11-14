@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BOM操作</title>
+</head>
+<body>
+    <script>
+    /*
+    BOM 操作
+    Browser Object Model
+
+    如何检测浏览器的类型
+    拆解 url 的各部分
+    
+    知识点
+    navigator
+    screen
+    location
+    history
+
+    */
+
+    //navigator
+    var ua = navigator.userAgent  // 字符串  判断浏览器特性
+    console.log(ua)
+    var isChrome = ua.indexOf('Chrome')
+    console.log(isChrome)
+
+    // screen
+    console.log(screen.width)
+    console.log(screen.height)
+
+    // location  
+    console.log(location.href)      // 整个URL
+    console.log(location.protocol)  // 'http:' 'https:'  协议
+    console.log(location.host)      //  域名
+    console.log(location.pathname)  // '/learn/199'  路径
+    console.log(location.search)    // ? 参数
+    console.log(location.hash)      //  # 
+
+    // history
+    history.back()
+    history.forward()
+
+    </script>
+</body>
+</html>

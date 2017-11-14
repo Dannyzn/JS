@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">
+        <p id="p1">this is p1</p>
+        <p id="p2">this is p2</p>
+    </div>
+    <div id="div2">
+        <p id="p3">this is p3</p>
+        <p id="p4">this is p4</p>
+    </div>
+
+    <script type="text/javascript">
+        var p = document.createElement('p')
+        p.innerHTML = 'NEW P'
+
+        var div1 = document.getElementById('div1')
+        div1.appendChild(p)    // 新加节点
+
+        var p4 = document.getElementById('p4')
+        div1.appendChild(p4)   // 移动节点
+
+        console.log(p4.parentElement)  // 获取父元素
+        console.log(div1.parentElement)
+
+        console.log(div1.childNodes)
+        // 通过nodeType 来确定到底是什么节点
+        console.log(div1.childNodes[0].nodeType)  // text 3
+        console.log(div1.childNodes[1].nodeType)  // p    1
+        console.log(div1.childNodes[0].nodeName)  // #text 
+        console.log(div1.childNodes[1].nodeName)  // P
+
+        var childNodes = div1.childNodes
+        // div1.removeChild(childNodes[0])  // text
+        div1.removeChild(childNodes[1])
+
+
+        // 树
+        // DOM常用API
+        /*
+        获取DOM节点，以及节点的property和Attribute
+        获取父节点，获取子节点
+        新增节点，删除节点
+        */
+
+        // property 只是一个JS对象的属性的修改和获取
+        // Attribute 是对 html 标签属性的获取
+
+        
+    </script>
+</body>
+</html>
